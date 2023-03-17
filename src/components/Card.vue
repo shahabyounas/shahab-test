@@ -13,7 +13,6 @@ export default {
     />
 
     <div>Blider</div>
-
     <div>Price</div>
 
     <button>Get price</button>
