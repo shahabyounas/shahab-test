@@ -1,4 +1,8 @@
 <script>
+/**
+ * Card Design paractices
+ * https://uxdesign.cc/8-best-practices-for-ui-card-design-898f45bb60cc
+ **/
 import Card from '../components/Card.vue';
 export default {
   name: 'Landing',
