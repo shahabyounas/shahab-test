@@ -34,6 +34,15 @@ a:hover {
 
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #fbfafe !important;
+}
+
+#app {
+  max-width: 1280px;
 }
 
 h1 {
@@ -63,13 +72,6 @@ button:focus-visible {
 .card {
   padding: 2em;
 }
-
-/* #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
 
 @media (prefers-color-scheme: light) {
   :root {

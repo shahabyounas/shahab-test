@@ -9,6 +9,9 @@ export default {
   components: {
     Card,
   },
+  data: () => ({
+    rollersList: [{}, {}, {}, {}, {}, {}, {}],
+  }),
 };
 </script>
 
@@ -32,12 +35,20 @@ export default {
       </div>
     </div>
 
-    <Card />
+    <div class="d-flex flex-wrap justify-content-center cards">
+      <div v-for="item in rollersList" :key="item.id">
+        <Card />
+      </div>
+    </div>
   </div>
 </template>
 
 <style>
 .title {
   font-size: 1.5rem;
+}
+
+.cards {
+  gap: 1rem;
 }
 </style>

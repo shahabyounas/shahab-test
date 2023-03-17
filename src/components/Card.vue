@@ -3,6 +3,7 @@
  * Reference
  * The card defalut icon taken from flaticon
  * https://www.flaticon.com/free-icons/window-blinds
+ * https://www.uidesign.tips/blog/12-box-shadows-for-your-next-ui-project
  **/
 import defaultImage from '../assets/blinds.png';
 export default {
@@ -24,19 +25,25 @@ export default {
 </script>
 
 <template>
-  <div class="card justify-content-center text-center">
-    <img :src="image" class="card-img-top rounded-10" alt="Card image" />
+  <div class="card justify-content-center text-center py-3">
+    <img :src="image" class="card-img-top" alt="Card image" />
 
-    <div class="fw-bold">{{ title }}</div>
+    <div class="fw-bold small title mt-2">{{ title }}</div>
     <div class="my-1">From {{ currency }}{{ price }}</div>
 
-    <button>Get price</button>
+    <button class="price-btn rounded my-2">Get price</button>
   </div>
 </template>
 
 <style>
 .card {
-  width: 200px;
+  width: 170px;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  box-shadow: 0px 0px 0px 2px #5d38e0;
+  background-color: #fbfafe !important;
 }
 
 .card-img-top {
@@ -45,5 +52,15 @@ export default {
 
 .rounded-10 {
   border-radius: 10px;
+}
+
+.price-btn {
+  background-color: #5d38e0;
+  color: #ffffff;
+  font-size: 0.8em;
+}
+
+.price-btn:hover {
+  filter: saturate(2);
 }
 </style>
