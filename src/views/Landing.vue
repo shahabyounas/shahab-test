@@ -1,3 +1,13 @@
+<script>
+import Card from '../components/Card.vue';
+export default {
+  name: 'Landing',
+  components: {
+    Card,
+  },
+};
+</script>
+
 <template>
   <div class="container mt-2">
     <div class="row justify-content-center">
@@ -17,14 +27,10 @@
         </p>
       </div>
     </div>
+
+    <Card />
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Landing',
-};
-</script>
 
 <style>
 .title {
