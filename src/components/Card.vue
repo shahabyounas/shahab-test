@@ -37,7 +37,7 @@ export default {
 
 <style>
 .card {
-  width: 170px;
+  max-width: 220px;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -62,5 +62,11 @@ export default {
 
 .price-btn:hover {
   filter: saturate(2);
+}
+
+@media (max-width: 576px) {
+  .card {
+    max-width: 175px;
+  }
 }
 </style>
