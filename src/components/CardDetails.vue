@@ -1,7 +1,7 @@
 <template>
   <div class="card-details p-2">
     <div class="d-flex justify-content-center">
-      <div class="justify-content-center card-img-bg py-2 px-4 img-thumbnai">
+      <div class="justify-content-center card-img-bg py-2">
         <img :src="image" class="card-img-top" :alt="title" />
       </div>
     </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import defaultImage from '../assets/blinder-image.jpg';
+import defaultImage from '../assets/roller_one.jpg';
 export default {
   name: 'Card',
   props: {
@@ -87,7 +87,7 @@ export default {
 }
 
 .card-img-top {
-  height: 10rem;
+  height: 20rem;
   object-fit: cover;
 }
 </style>
