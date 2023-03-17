@@ -4,6 +4,7 @@
  * https://uxdesign.cc/8-best-practices-for-ui-card-design-898f45bb60cc
  **/
 import Card from '../components/Card.vue';
+import CardDetails from '../components/CardDetails.vue';
 
 const resp = {
   status: 'success',
@@ -186,6 +187,7 @@ export default {
   name: 'Landing',
   components: {
     Card,
+    CardDetails,
   },
   data: () => ({
     description: resp.data.description,
@@ -213,7 +215,7 @@ export default {
 
     <div class="d-flex flex-wrap justify-content-center cards">
       <div v-for="item in rollersList" :key="item.id">
-        <Card data="{item}" title="description" />
+        <CardDetails data="{item}" title="description" />
       </div>
     </div>
   </div>
