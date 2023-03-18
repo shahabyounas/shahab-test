@@ -17,9 +17,8 @@ const resp = {
         description:
           'This chic and contemporary blackout roller blind is, unsurprisingly, one of the very bestselling products on our website.',
         images: {
-          main: 'https:\/\/cdn.interiorgoodsdirect.com\/image-system\/regular\/rollers\/roller\/window-1200\/touched_by_design_deluxe_plain_powder_blue.jpg',
-          thumb:
-            'https:\/\/cdn.interiorgoodsdirect.com\/image-system\/regular\/rollers\/roller\/thumb\/touched_by_design_deluxe_plain_powder_blue.jpg',
+          main: 'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
+          thumb: 'https://via.placeholder.com/600/92c952',
         },
         limits: {
           width: {
@@ -194,7 +193,10 @@ export default {
     rollersList: resp.data.products,
   }),
 
-  created: function () {},
+  created: function () {
+    console.log('this', this.rollersList);
+    
+  },
 };
 </script>
 
@@ -215,8 +217,10 @@ export default {
 
     <div class="d-flex flex-wrap justify-content-center cards">
       <div v-for="item in rollersList" :key="item.id">
-        <CardDetails data="{item}" title="description" />
+        <Card :title="item.name" :img="item.images.main" />
+        <!-- <CardDetails data="{item}" title="description" /> -->
       </div>
+      <!-- <CardDetails data="{item}" title="description" /> -->
     </div>
   </div>
 </template>

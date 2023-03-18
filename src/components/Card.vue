@@ -21,6 +21,14 @@ export default {
     price: { type: Number, required: true, default: 10 },
     currency: { type: String, required: true, default: '£' },
   },
+
+  created: function () {
+    if (this.img.includes('picsum')) {
+      this.image = this.img || defaultImage;
+    } else {
+      this.image = defaultImage;
+    }
+  },
 };
 </script>
 
@@ -48,6 +56,8 @@ export default {
 
 .card-img-top {
   object-fit: cover;
+  height: 9.5rem;
+  min-width: 10rem;
 }
 
 .rounded-10 {

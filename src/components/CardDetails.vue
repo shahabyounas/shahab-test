@@ -1,34 +1,48 @@
 <template>
-  <div class="card-details p-2">
-    <div class="">
-      <div class="j card-img-bg py-2">
+  <div class="card-details row p-2">
+    <div class="col-lg-6 col-sm-12">
+      <div class="card-img-bg py-2">
         <img :src="image" class="card-img-top" :alt="title" />
       </div>
     </div>
-    <div class="card-body">
+    <div class="col-lg-6 col-sm-12 card-body">
       <h5 class="card-title fw-bold text-capitalize my-2 h2">{{ title }}</h5>
 
       <p class="card-text">{{ description }}</p>
 
       <p>{{ containerDetails }}</p>
 
-      <div class="d-flex flex-column">
-        <label for="" class="fw-bold my-2">
+      <div class="d-flex flex-column" style="background: gree">
+        <label for="" class="fw-bold my-3">
           Enter Measurements to get a price
         </label>
-        <input
-          type="number"
-          class="form-control"
-          placeholder="Width (cm)"
-          v-model="width"
-          placehoder="width fo the cm"
-        />
-        <input
-          type="number"
-          class="form-control my-2"
-          placeholder="Drop (cm)"
-          v-model="drop"
-        />
+
+        <div class="row gy-4">
+          <div class="col-lg-6 gap-2">
+            <input
+              type="number"
+              class="form-control col-lg-6"
+              placeholder="Width (cm)"
+              v-model="width"
+              placehoder="width fo the cm"
+            />
+          </div>
+
+          <div class="col-lg-6">
+            <input
+              type="number"
+              class="form-control col-lg-6"
+              placeholder="Drop (cm)"
+              v-model="drop"
+            />
+          </div>
+        </div>
+
+        <div class="mt-auto">
+          <button class="mt-3 form-control card-details-btn">
+            Add to basket
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -74,16 +88,20 @@ export default {
 
 <style scoped>
 .card-details {
-  width: 300px;
   margin: 1rem;
-  border: 1px solid black;
-  border-radius: 10px;
+}
 
-  /* background-color: grey; */
+.card-bock {
+  flex: 1 1 0;
 }
 
 .card-img-bg {
   /* background-color: #f1eefd !important; */
+}
+
+.card-details-btn {
+  background-color: #5d38e0;
+  color: #ffffff;
 }
 
 .card-img-top {
