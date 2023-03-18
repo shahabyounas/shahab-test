@@ -195,7 +195,6 @@ export default {
 
   created: function () {
     console.log('this', this.rollersList);
-    
   },
 };
 </script>
@@ -217,10 +216,18 @@ export default {
 
     <div class="d-flex flex-wrap justify-content-center cards">
       <div v-for="item in rollersList" :key="item.id">
-        <Card :title="item.name" :img="item.images.main" />
-        <!-- <CardDetails data="{item}" title="description" /> -->
+        <Card
+          :title="item.name"
+          :img="item.images.main"
+          :price="
+            Math.round(
+              item.limits.width.min *
+                item.limits.drop.min *
+                (item.price_per_metre_squared / 10000)
+            ) // Change square per meter price to per square centimeter, assuming that width and drop values are in cm
+          "
+        />
       </div>
-      <!-- <CardDetails data="{item}" title="description" /> -->
     </div>
   </div>
 </template>
