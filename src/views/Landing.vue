@@ -37,9 +37,11 @@ export default {
           <div class="secondary-title">Defined by Quality</div>
         </div>
 
-        <hr />
+        <hr class="text-muted" />
 
         <p class="text-center">{{ description }}</p>
+
+        <hr class="text-muted" />
       </div>
     </div>
 
