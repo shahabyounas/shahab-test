@@ -23,11 +23,7 @@ export default {
   },
 
   created: function () {
-    if (this.img.includes('picsum')) {
-      this.image = this.img || defaultImage;
-    } else {
-      this.image = defaultImage;
-    }
+    this.image = this.img;
   },
 };
 </script>
@@ -57,7 +53,6 @@ export default {
 .card-img-top {
   object-fit: cover;
   height: 9.5rem;
-  min-width: 10rem;
 }
 
 .rounded-10 {
