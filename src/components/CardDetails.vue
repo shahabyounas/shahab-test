@@ -95,13 +95,13 @@ export default {
   flex: 1 1 0;
 }
 
-.card-img-bg {
-  /* background-color: #f1eefd !important; */
-}
-
 .card-details-btn {
   background-color: #5d38e0;
   color: #ffffff;
+}
+
+.card-details-btn {
+  filter: saturate(2);
 }
 
 .card-img-top {

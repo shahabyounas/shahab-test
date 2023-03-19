@@ -3,9 +3,10 @@
  * Card Design paractices
  * https://uxdesign.cc/8-best-practices-for-ui-card-design-898f45bb60cc
  **/
-import { toRaw } from 'vue';
+import { ref } from 'vue';
 import Card from '../components/Card.vue';
 import CardDetails from '../components/CardDetails.vue';
+import Modal from '../components/Modal.vue';
 import { BlindsService } from '../services/Blinds.js';
 
 export default {
@@ -13,10 +14,12 @@ export default {
   components: {
     Card,
     CardDetails,
+    Modal,
   },
   data: () => ({
     description: '',
     rollersList: [],
+    showModal: true,
   }),
 
   created: async function () {
@@ -24,6 +27,28 @@ export default {
 
     this.rollersList = blindsResp.data.products;
     this.description = blindsResp.data.description;
+  },
+
+  methods: {
+    // showModal: function () {
+    //   console.log('Show modal');
+    //   thisModal.value.show();
+    // },
+  },
+
+  setup() {
+    const popupTriggers = ref({
+      buttonTrigger: false,
+    });
+    const TogglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
+
+    return {
+      Modal,
+      popupTriggers,
+      TogglePopup,
+    };
   },
 };
 </script>
@@ -58,9 +83,17 @@ export default {
                 (item.price_per_metre_squared / 10000)
             ) // Change square per meter price to per square centimeter, assuming that width and drop values are in cm
           "
+          @handleButton="TogglePopup('buttonTrigger')"
         />
       </div>
     </div>
+
+    <Modal
+      v-if="popupTriggers.buttonTrigger"
+      :TogglePopup="() => TogglePopup('buttonTrigger')"
+    >
+      <CardDetails />
+    </Modal>
   </div>
 </template>
 

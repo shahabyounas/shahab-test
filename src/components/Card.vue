@@ -12,7 +12,7 @@ export default {
     image: defaultImage,
   }),
   props: {
-    id: { type: String, required: true },
+    id: { type: String, required: true }, // Unique Id is usually in String format
     img: { type: String, required: true },
     title: {
       type: String,
@@ -23,11 +23,7 @@ export default {
     currency: { type: String, required: true, default: '£' },
   },
 
-  methods: {
-    getPrice: function (id) {
-      console.log('hello', id);
-    },
-  },
+  methods: {},
 
   created: function () {
     this.image = this.img;
@@ -42,7 +38,7 @@ export default {
     <div class="fw-bold small title mt-2">{{ title }}</div>
     <div class="my-1">From {{ currency }}{{ price }}</div>
 
-    <button class="price-btn rounded my-2" @click="getPrice(id)">
+    <button class="price-btn rounded my-2" @click="$emit('handleButton', id)">
       Get price
     </button>
   </div>

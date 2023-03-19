@@ -1,98 +1,55 @@
+<script>
+/**
+ * References
+ * https://blog.fontawesome.com/how-to-use-vue-js-with-font-awesome/
+ * https://github.com/TylerPottsDev/vue-popups-yt/blob/main/src/App.vue
+ **/
+export default {
+  props: ['TogglePopup'],
+};
+</script>
+
 <template>
-  <div>
-    <button type="button" class="btn btn-primary" @click="showModal">
-      {{ buttonLabel }}
-    </button>
-
-    <div
-      class="modal"
-      tabindex="-1"
-      role="dialog"
-      ref="modal"
-      @click.self="hideModal"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{{ modalTitle }}</h5>
-            <button type="button" class="btn-close" @click="hideModal"></button>
-          </div>
-
-          <div class="modal-body">
-            <slot />
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="hideModal">
-              {{ closeLabel }}
-            </button>
-            <button type="button" class="btn btn-primary" @click="saveChanges">
-              {{ saveLabel }}
-            </button>
-          </div>
-        </div>
-      </div>
+  <div class="popup">
+    <div class="popup-inner">
+      <i
+        class="fa-regular fa-circle-xmark popup-close"
+        @click="TogglePopup()"
+      ></i>
+      <slot />
     </div>
   </div>
 </template>
 
-<script>
-import { ref } from 'vue';
+<style scoped>
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.2);
 
-export default {
-  name: 'Modal',
-  props: {
-    buttonLabel: {
-      type: String,
-      default: 'Open Modal',
-    },
-    modalTitle: {
-      type: String,
-      default: 'Modal Title',
-    },
-    closeLabel: {
-      type: String,
-      default: 'Close',
-    },
-    saveLabel: {
-      type: String,
-      default: 'Save Changes',
-    },
-  },
-  setup(props, { slots }) {
-    const showModal = ref(false);
-
-    const hideModal = () => {
-      showModal.value = false;
-    };
-
-    const saveChanges = () => {
-      hideModal();
-    };
-
-    return {
-      showModal,
-      hideModal,
-      saveChanges,
-      slots,
-    };
-  },
-};
-</script>
-
-<style>
-.modal-dialog {
-  max-width: 90%;
-  margin: 1.75rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal-header {
+.popup-inner {
+  background: #fff;
+  margin: 0 1rem;
   position: relative;
 }
 
-.modal-header .btn-close {
+.popup-close {
   position: absolute;
-  top: 0;
   right: 0;
+  margin: 0.2rem;
+}
+
+.popup-close:hover {
+  color: #5d38e0;
 }
 </style>
