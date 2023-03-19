@@ -12,6 +12,7 @@ export default {
     image: defaultImage,
   }),
   props: {
+    id: { type: String, required: true },
     img: { type: String, required: true },
     title: {
       type: String,
@@ -20,6 +21,12 @@ export default {
     },
     price: { type: Number, required: true, default: 10 },
     currency: { type: String, required: true, default: '£' },
+  },
+
+  methods: {
+    getPrice: function (id) {
+      console.log('hello', id);
+    },
   },
 
   created: function () {
@@ -35,7 +42,9 @@ export default {
     <div class="fw-bold small title mt-2">{{ title }}</div>
     <div class="my-1">From {{ currency }}{{ price }}</div>
 
-    <button class="price-btn rounded my-2">Get price</button>
+    <button class="price-btn rounded my-2" @click="getPrice(id)">
+      Get price
+    </button>
   </div>
 </template>
 

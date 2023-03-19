@@ -46,8 +46,9 @@ export default {
     </div>
 
     <div class="d-flex flex-wrap justify-content-center cards">
-      <div v-for="item in rollersList" :key="item.id">
+      <div v-for="(item, index) in rollersList" :key="iindex">
         <Card
+          :id="index"
           :title="item.name"
           :img="item.images.thumb"
           :price="
