@@ -5,7 +5,7 @@
  * https://github.com/TylerPottsDev/vue-popups-yt/blob/main/src/App.vue
  **/
 export default {
-  props: ['TogglePopup'],
+  props: ['toggleModal'],
 };
 </script>
 
@@ -14,7 +14,7 @@ export default {
     <div class="popup-inner">
       <i
         class="fa-regular fa-circle-xmark popup-close"
-        @click="TogglePopup()"
+        @click="toggleModal()"
       ></i>
       <slot />
     </div>
@@ -41,6 +41,12 @@ export default {
   background: #fff;
   margin: 0 1rem;
   position: relative;
+  border-radius: 10px;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.05);
+}
+
+.popup-inner:hover {
+  box-shadow: 0px 0px 0px 2px #5d38e0;
 }
 
 .popup-close {

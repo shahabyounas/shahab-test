@@ -10,6 +10,20 @@ import Modal from '../components/Modal.vue';
 import { BlindsService } from '../services/Blinds.js';
 
 export default {
+  setup() {
+    const modalRef = ref({
+      buttonTrigger: false,
+    });
+    const toggleModal = (trigger) => {
+      modalRef.value[trigger] = !modalRef.value[trigger];
+    };
+
+    return {
+      Modal,
+      modalRef,
+      toggleModal,
+    };
+  },
   name: 'Landing',
   components: {
     Card,
@@ -18,37 +32,20 @@ export default {
   },
   data: () => ({
     description: '',
-    rollersList: [],
-    showModal: true,
+    products: [],
+    selectedProduct: null,
   }),
-
   created: async function () {
     const blindsResp = await BlindsService.getListOfBlinds();
 
-    this.rollersList = blindsResp.data.products;
+    this.products = blindsResp.data.products;
     this.description = blindsResp.data.description;
   },
 
   methods: {
-    // showModal: function () {
-    //   console.log('Show modal');
-    //   thisModal.value.show();
-    // },
-  },
-
-  setup() {
-    const popupTriggers = ref({
-      buttonTrigger: false,
-    });
-    const TogglePopup = (trigger) => {
-      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
-    };
-
-    return {
-      Modal,
-      popupTriggers,
-      TogglePopup,
-    };
+    getPriceHandler: function () {
+      this.toggleModal('buttonTrigger');
+    },
   },
 };
 </script>
@@ -71,7 +68,7 @@ export default {
     </div>
 
     <div class="d-flex flex-wrap justify-content-center cards">
-      <div v-for="(item, index) in rollersList" :key="iindex">
+      <div v-for="(item, index) in products" :key="iindex">
         <Card
           :id="index"
           :title="item.name"
@@ -83,14 +80,14 @@ export default {
                 (item.price_per_metre_squared / 10000)
             ) // Change square per meter price to per square centimeter, assuming that width and drop values are in cm
           "
-          @handleButton="TogglePopup('buttonTrigger')"
+          @handleButton="getPriceHandler(id)"
         />
       </div>
     </div>
 
     <Modal
-      v-if="popupTriggers.buttonTrigger"
-      :TogglePopup="() => TogglePopup('buttonTrigger')"
+      v-if="modalRef.buttonTrigger"
+      :toggleModal="() => toggleModal('buttonTrigger')"
     >
       <CardDetails />
     </Modal>
