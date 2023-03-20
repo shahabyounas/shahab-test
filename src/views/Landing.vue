@@ -20,6 +20,7 @@ export default {
     description: '',
     products: [],
     selectedProduct: null,
+    modalId: 'modalId',
   }),
   created: async function () {
     const blindsApiResp = await BlindsService.getListOfBlinds();
@@ -32,6 +33,10 @@ export default {
     getPriceHandler: function (id) {
       const productFound = this.products.find((product) => product.id === id);
       this.selectedProduct = productFound;
+    },
+
+    addToCard: function () {
+      console.log('addToCard');
     },
   },
 };
@@ -57,7 +62,7 @@ export default {
     <div class="d-flex flex-wrap justify-content-center cards">
       <div v-for="(item, index) in products" :key="iindex">
         <Card
-          buttonRefId="#cardModal"
+          :buttonRefId="'#' + modalId"
           :id="item.id"
           :title="item.name"
           :img="item.images.thumb"
@@ -73,10 +78,11 @@ export default {
       </div>
     </div>
 
-    <Modal modalId="cardModal">
+    <Modal :modalId="modalId">
       <CardDetails
         v-bind="selectedProduct"
         :img="selectedProduct?.images?.main"
+        @handleAddToCard="addToCard"
       />
     </Modal>
   </div>

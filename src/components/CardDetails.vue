@@ -70,7 +70,7 @@
         </span>
 
         <div class="mt-aut" v-if="isWidthInRange && isDropInRange">
-          <button class="mt-3 form-control card-details-btn">
+          <button class="mt-3 form-control card-details-btn" @click="addToCart">
             Add to basket
           </button>
         </div>
@@ -149,6 +149,12 @@ export default {
         this.isDropInRange = false;
       }
       this.drop = e.target.value;
+    },
+
+    addToCart: function () {
+      this.width = null;
+      this.drop = null;
+      this.$emit('handleAddToCard');
     },
   },
 };
