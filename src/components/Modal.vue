@@ -2,60 +2,47 @@
 /**
  * References
  * https://blog.fontawesome.com/how-to-use-vue-js-with-font-awesome/
- * https://github.com/TylerPottsDev/vue-popups-yt/blob/main/src/App.vue
+ * https://getbootstrap.com/docs/5.0/components/modal/
  **/
 export default {
-  props: ['toggleModal'],
+  props: {
+    modalId: { type: String, required: true, default: 'modal' },
+  },
 };
 </script>
 
 <template>
-  <div class="popup">
-    <div class="popup-inner">
-      <i
-        class="fa-regular fa-circle-xmark popup-close"
-        @click="toggleModal()"
-      ></i>
-      <slot />
+  <div
+    class="modal fade"
+    :id="modalId"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <slot />
+        </div>
+        <div class="modal-footer"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99;
-  background-color: rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.modal-header {
+  border-bottom: 0 none;
 }
-
-.popup-inner {
-  background: #fff;
-  margin: 0 1rem;
-  position: relative;
-  border-radius: 10px;
-  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.05);
-}
-
-.popup-inner:hover {
-  box-shadow: 0px 0px 0px 2px #5d38e0;
-}
-
-.popup-close {
-  position: absolute;
-  right: 0;
-  margin: 0.2rem;
-}
-
-.popup-close:hover {
-  color: #5d38e0;
+.modal-footer {
+  border-top: 0 none;
 }
 </style>

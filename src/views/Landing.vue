@@ -10,20 +10,6 @@ import Modal from '../components/Modal.vue';
 import { BlindsService } from '../services/Blinds.js';
 
 export default {
-  setup() {
-    const modalRef = ref({
-      buttonTrigger: false,
-    });
-    const toggleModal = (trigger) => {
-      modalRef.value[trigger] = !modalRef.value[trigger];
-    };
-
-    return {
-      Modal,
-      modalRef,
-      toggleModal,
-    };
-  },
   name: 'Landing',
   components: {
     Card,
@@ -36,15 +22,16 @@ export default {
     selectedProduct: null,
   }),
   created: async function () {
-    const blindsResp = await BlindsService.getListOfBlinds();
+    const blindsApiResp = await BlindsService.getListOfBlinds();
 
-    this.products = blindsResp.data.products;
-    this.description = blindsResp.data.description;
+    this.products = blindsApiResp.products;
+    this.description = blindsApiResp.description;
   },
 
   methods: {
-    getPriceHandler: function () {
-      this.toggleModal('buttonTrigger');
+    getPriceHandler: function (id) {
+      const productFound = this.products.find((product) => product.id === id);
+      this.selectedProduct = productFound;
     },
   },
 };
@@ -70,7 +57,8 @@ export default {
     <div class="d-flex flex-wrap justify-content-center cards">
       <div v-for="(item, index) in products" :key="iindex">
         <Card
-          :id="index"
+          buttonRefId="#cardModal"
+          :id="item.id"
           :title="item.name"
           :img="item.images.thumb"
           :price="
@@ -80,16 +68,16 @@ export default {
                 (item.price_per_metre_squared / 10000)
             ) // Change square per meter price to per square centimeter, assuming that width and drop values are in cm
           "
-          @handleButton="getPriceHandler(id)"
+          @handleButton="getPriceHandler"
         />
       </div>
     </div>
 
-    <Modal
-      v-if="modalRef.buttonTrigger"
-      :toggleModal="() => toggleModal('buttonTrigger')"
-    >
-      <CardDetails />
+    <Modal modalId="cardModal">
+      <CardDetails
+        v-bind="selectedProduct"
+        :img="selectedProduct?.images?.main"
+      />
     </Modal>
   </div>
 </template>

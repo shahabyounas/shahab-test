@@ -21,6 +21,7 @@ export default {
     },
     price: { type: Number, required: true, default: 10 },
     currency: { type: String, required: true, default: '£' },
+    buttonRefId: { type: String, required: true, default: '' },
   },
 
   methods: {},
@@ -38,7 +39,12 @@ export default {
     <div class="fw-bold small title mt-2">{{ title }}</div>
     <div class="my-1">From {{ currency }}{{ price }}</div>
 
-    <button class="price-btn rounded my-2" @click="$emit('handleButton', id)">
+    <button
+      class="price-btn rounded my-2"
+      data-bs-toggle="modal"
+      :data-bs-target="buttonRefId"
+      @click="$emit('handleButton', id)"
+    >
       Get price
     </button>
   </div>
@@ -46,7 +52,7 @@ export default {
 
 <style>
 .card {
-  max-width: 220px;
+  width: 220px;
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.05);
 }
 

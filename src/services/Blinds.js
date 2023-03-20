@@ -174,7 +174,7 @@ const data = {
         },
         price_per_metre_squared: 96.49,
       },
-    ],
+    ].map((p) => ({ ...p, id: getUniqueId() })),
   },
 };
 
@@ -182,12 +182,23 @@ export class BlindsService {
   static users = [];
 
   static async getListOfBlinds() {
-    // const dataUrl =
-    //   'https://www.interiorgoodsdirect.com/interview/api/products?key=6HJx2R8st$%Q';
-    // const resp = await axios.get(dataUrl);
+    const dataUrl =
+      'https://www.interiorgoodsdirect.com/interview/api/products?key=6HJx2R8st$%Q';
+    const resp = await axios.get(dataUrl);
 
-    // const data = data.data;
+    const respObj = {
+      status: resp.data.status,
+      description: resp.data.data.description,
+      products: resp.data.data.products.map((p) => ({
+        ...p,
+        id: getUniqueId(),
+      })),
+    };
 
-    return data;
+    return respObj;
   }
+}
+
+export function getUniqueId() {
+  return Math.floor(Math.random() * Date.now()).toString(16);
 }

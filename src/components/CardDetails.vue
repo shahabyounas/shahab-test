@@ -1,19 +1,20 @@
 <template>
   <div class="card-details row p-2">
     <div class="col-lg-6 col-sm-12">
-      <div class="card-img-bg py-2">
-        <img :src="image" class="card-img-top" :alt="title" />
+      <div class="card-img-bg py-1">
+        <img :src="img" class="card-img-top rounded" :alt="title" />
       </div>
     </div>
     <div class="col-lg-6 col-sm-12 card-body">
-      <h5 class="card-title fw-bold text-capitalize my-2 h2">{{ title }}</h5>
+      <h5 class="card-title fw-bold text-capitalize my-lg-0 my-sm-3 h2">
+        {{ name }}
+      </h5>
 
       <p class="card-text">{{ description }}</p>
 
-      <p>{{ containerDetails }}</p>
-
       <div class="d-flex flex-column" style="background: gree">
         <label for="" class="fw-bold my-3">
+          <!-- Static Card details label -->
           Enter Measurements to get a price
         </label>
 
@@ -53,11 +54,11 @@ import defaultImage from '../assets/roller_two.jpg';
 export default {
   name: 'Card',
   props: {
-    imageUrl: {
+    img: {
       type: String,
       required: true,
     },
-    title: {
+    name: {
       type: String,
       required: true,
     },
@@ -80,7 +81,6 @@ export default {
     return {
       width: null,
       drop: null,
-      image: defaultImage,
     };
   },
 };
