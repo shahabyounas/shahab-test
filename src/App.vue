@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+/**
+ * All References are added in respective vue files
+ * */
+</script>
 
 <template>
   <div>
